@@ -4,55 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>optimal-life - Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>optimal-life Task Prioritizer</h1>
-
-      <div class="form-container">
-        <h2>Add New Task</h2>
-        <form id="addTaskForm">
-          <input type="text" id="title" placeholder="Title" required />
-          <textarea id="description" placeholder="Description"></textarea>
-          <div class="input-group">
-            <label>Importance (1-10):</label>
-            <input
-              type="number"
-              id="importance"
-              min="1"
-              max="10"
-              value="5"
-              required
-            />
-          </div>
-          <div class="input-group">
-            <label>Energy Required (1-10):</label>
-            <input
-              type="number"
-              id="energy"
-              min="1"
-              max="10"
-              value="5"
-              required
-            />
-          </div>
-          <div class="input-group">
-            <label>Time Estimate (minutes):</label>
-            <input type="number" id="time_estimate" value="30" required />
-          </div>
-          <button type="submit">Add Task (Auto-Prioritize)</button>
-        </form>
-      </div>
-
-      <div class="list-container">
-        <h2>Prioritized Tasks</h2>
-        <ul id="taskList">
-          <li class="empty-list">No tasks yet. Add one!</li>
-        </ul>
-      </div>
-    </div>
-
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,137 +1,220 @@
+/* Enhanced styles.css */
+
+/* --- Base & Typography --- */
+:root {
+  --color-primary: #3b82f6; /* Blue 500 */
+  --color-secondary: #10b981; /* Emerald 500 */
+  --color-text-dark: #1f2937; /* Gray 800 */
+  --color-text-medium: #4b5563; /* Gray 600 */
+  --color-bg-light: #f9fafb; /* Gray 50 */
+  --color-bg-white: #ffffff;
+  --color-error: #ef4444; /* Red 500 */
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f7f9;
-  color: #333;
+  font-family: "Inter", sans-serif; /* Use a modern font stack */
+  background-color: var(--color-bg-light);
+  color: var(--color-text-medium);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  padding: 40px 20px;
+  min-height: 100vh;
 }
 
 .container {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg-white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
   width: 100%;
-  max-width: 900px;
+  max-width: 960px; /* Slightly wider max-width */
 }
 
 h1 {
-  color: #4a5568;
+  color: var(--color-text-dark);
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 h2 {
-  color: #2d3748;
+  color: var(--color-text-dark);
   margin-top: 0;
-  border-bottom: 2px solid #edf2f7;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb; /* Subtle separator */
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-/* Form Styling */
-.form-container {
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-}
-
-#addTaskForm input[type="text"],
-#addTaskForm textarea,
+/* --- Form Elements --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
 .input-group input[type="number"] {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #d1d5db; /* Gray 300 */
+  border-radius: 8px;
   box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+input:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Subtle focus ring */
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2563eb; /* Darker Blue */
+}
+
+button:disabled {
+  background-color: #9ca3af; /* Gray 400 */
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* --- Input Groups & Task Form --- */
 .input-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .input-group label {
-  flex-basis: 40%;
-  font-weight: bold;
-  color: #4a5568;
+  flex-basis: 45%;
+  font-weight: 600;
+  color: var(--color-text-dark);
 }
 
 .input-group input[type="number"] {
-  flex-basis: 55%;
+  flex-basis: 50%;
   margin-bottom: 0;
 }
 
-#addTaskForm button {
-  background-color: #4c51bf; /* Indigo 600 */
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-#addTaskForm button:hover {
-  background-color: #3c4199; /* Darker Indigo */
-}
-
-/* List Styling */
+/* --- Task List Styling --- */
 #taskList {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 12px;
 }
 
 #taskList li {
-  background: #edf2f7; /* Gray 100 */
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: var(--color-bg-white);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-left: 5px solid transparent;
+  border-left: 6px solid transparent;
+  transition: transform 0.1s, box-shadow 0.2s;
 }
 
+#taskList li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Priority Colors */
 .priority-high {
-  border-left-color: #e53e3e;
-} /* Red */
+  border-left-color: #ef4444; /* Red */
+}
 .priority-medium {
-  border-left-color: #dd6b20;
-} /* Orange */
+  border-left-color: #f59e0b; /* Amber */
+}
 .priority-low {
-  border-left-color: #38a169;
-} /* Green */
+  border-left-color: var(--color-secondary); /* Emerald */
+}
 
 .task-info {
   flex-grow: 1;
 }
 
 .priority-score {
-  font-weight: bold;
-  font-size: 1.1em;
-  padding: 5px 10px;
-  background: #cbd5e0;
-  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1em;
+  padding: 6px 10px;
+  background: #e5e7eb;
+  color: var(--color-text-dark);
+  border-radius: 6px;
+  min-width: 50px;
+  text-align: center;
 }
 
 .task-title {
-  font-weight: bold;
-  color: #2d3748;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  font-size: 1.1em;
 }
 
 .task-meta {
-  font-size: 0.85em;
-  color: #718096;
+  font-size: 0.8em;
+  color: var(--color-text-medium);
+  margin-top: 4px;
+}
+
+/* --- Auth & Login UI --- */
+.auth-container {
+  max-width: 450px;
+  margin: 40px auto;
+  background: var(--color-bg-white);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form {
+  margin-top: 20px;
+}
+
+.auth-toggle {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--color-text-medium);
+  font-size: 0.9em;
+}
+
+.auth-toggle button {
+  background: none;
+  color: var(--color-primary);
+  padding: 0;
+  width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.auth-error {
+  color: var(--color-error);
+  background: #fee2e2; /* Red 100 */
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  border: 1px solid var(--color-error);
 }
