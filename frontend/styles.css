@@ -1,0 +1,137 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+}
+
+h1 {
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #2d3748;
+  margin-top: 0;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-container {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+#addTaskForm input[type="text"],
+#addTaskForm textarea,
+.input-group input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  flex-basis: 40%;
+  font-weight: bold;
+  color: #4a5568;
+}
+
+.input-group input[type="number"] {
+  flex-basis: 55%;
+  margin-bottom: 0;
+}
+
+#addTaskForm button {
+  background-color: #4c51bf; /* Indigo 600 */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+#addTaskForm button:hover {
+  background-color: #3c4199; /* Darker Indigo */
+}
+
+/* List Styling */
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+#taskList li {
+  background: #edf2f7; /* Gray 100 */
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid transparent;
+}
+
+.priority-high {
+  border-left-color: #e53e3e;
+} /* Red */
+.priority-medium {
+  border-left-color: #dd6b20;
+} /* Orange */
+.priority-low {
+  border-left-color: #38a169;
+} /* Green */
+
+.task-info {
+  flex-grow: 1;
+}
+
+.priority-score {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 5px 10px;
+  background: #cbd5e0;
+  border-radius: 5px;
+}
+
+.task-title {
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.task-meta {
+  font-size: 0.85em;
+  color: #718096;
+}
