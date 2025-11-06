@@ -1,6 +1,6 @@
-NeuroPlan — Minimal Prototype
+optimal-life — Minimal Prototype
 
-This repository contains a minimal prototype of NeuroPlan: a FastAPI backend with ML module stubs and SQLite storage. The goal is a working baseline you can extend into the full app (React + Tailwind frontend, more features).
+This repository contains a minimal prototype of optimal-life: a FastAPI backend with ML module stubs and MongoDB storage. The goal is a working baseline you can extend into the full app (React + Tailwind frontend, more features).
 
 Quickstart (Windows cmd):
 

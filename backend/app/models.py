@@ -1,17 +1,21 @@
 from typing import Optional
-from sqlmodel import SQLModel, Field, Relationship
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 
-class User(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    email: str = Field(index=True, unique=True)
-    hashed_password: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-class Task(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
+class User(BaseModel):
+    id: Optional[str] = None
+    name: str
+    email: EmailStr
+    hashed_password: Optional[str] = None
+    created_at: Optional[datetime] = Field(default_factory=datetime.utcnow)
+
+    model_config = {"from_attributes": True}
+
+
+class Task(BaseModel):
+    id: Optional[str] = None
+    user_id: Optional[str] = None
     title: str
     description: Optional[str] = None
     deadline: Optional[datetime] = None
@@ -20,27 +24,42 @@ class Task(SQLModel, table=True):
     time_estimate: Optional[int] = None
     priority_score: Optional[float] = None
 
-class Expense(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
+    class Config:
+        pass
+
+
+class Expense(BaseModel):
+    id: Optional[str] = None
+    user_id: Optional[str] = None
     description: str
     amount: float
     category: Optional[str] = None
-    date: datetime = Field(default_factory=datetime.utcnow)
+    date: Optional[datetime] = Field(default_factory=datetime.utcnow)
 
-class FocusSession(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
+    class Config:
+        pass
+
+
+class FocusSession(BaseModel):
+    id: Optional[str] = None
+    user_id: Optional[str] = None
     start_time: datetime
     duration_minutes: int
     breaks: Optional[int] = 0
     focus_score: Optional[float] = None
 
-class Habit(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
+    class Config:
+        pass
+
+
+class Habit(BaseModel):
+    id: Optional[str] = None
+    user_id: Optional[str] = None
     sleep_hours: Optional[float] = None
     exercise_minutes: Optional[int] = None
     caffeine_mg: Optional[int] = None
     mood: Optional[int] = None
     correlation: Optional[float] = None
+
+    class Config:
+        pass

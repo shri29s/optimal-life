@@ -1,0 +1,217 @@
+{
+  "info": {
+    "name": "optimal-life API",
+    "_postman_id": "b1f4e2a4-7c9b-4c0b-9f2a-0f6b7aaa1111",
+    "description": "Postman collection for optimal-life API (FastAPI)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Add Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"title\": \"Finish report\",\n  \"description\": \"Finish the monthly report\",\n  \"importance\": 8,\n  \"energy\": 5,\n  \"time_estimate\": 90\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks/add",
+              "host": ["{{base_url}}"],
+              "path": ["tasks", "add"]
+            }
+          }
+        },
+        {
+          "name": "List Tasks",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/tasks/list?user_id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tasks", "list"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "item": [
+        {
+          "name": "Add Expense",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"description\": \"Lunch\",\n  \"amount\": 12.5,\n  \"category\": \"food\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses/add",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "add"]
+            }
+          }
+        },
+        {
+          "name": "List Expenses",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/expenses/list?user_id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "list"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Focus",
+      "item": [
+        {
+          "name": "Add Focus Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"start_time\": \"2025-11-06T09:00:00Z\",\n  \"duration_minutes\": 50,\n  \"breaks\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/focus/add",
+              "host": ["{{base_url}}"],
+              "path": ["focus", "add"]
+            }
+          }
+        },
+        {
+          "name": "List Focus Sessions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/focus/list?user_id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["focus", "list"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Habits",
+      "item": [
+        {
+          "name": "Add Habit",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"sleep_hours\": 7.5,\n  \"exercise_minutes\": 30,\n  \"caffeine_mg\": 50,\n  \"mood\": 7\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/habits/add",
+              "host": ["{{base_url}}"],
+              "path": ["habits", "add"]
+            }
+          }
+        },
+        {
+          "name": "List Habits",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/habits/list?user_id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["habits", "list"],
+              "query": [{ "key": "user_id", "value": "{{user_id}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Insights",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/analytics/insights",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "insights"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000", "type": "string" },
+    { "key": "user_id", "value": "", "type": "string" },
+    { "key": "token", "value": "", "type": "string" }
+  ]
+}

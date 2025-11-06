@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .database import init_db
+from .database import init_db, connect_to_mongo, close_mongo
 from .routers import auth, tasks, expenses, focus, habits, analytics
 
-app = FastAPI(title="NeuroPlan API - Prototype")
+app = FastAPI(title="optimal-life API - Prototype")
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,7 +16,15 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
+    # Initialize MongoDB connection
+    await connect_to_mongo(app)
+    # Legacy compatibility: no-op for Mongo
     init_db()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await close_mongo(app)
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"]) 
 app.include_router(tasks.router, prefix="/tasks", tags=["tasks"]) 

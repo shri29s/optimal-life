@@ -1,21 +1,27 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import Session, select
+from fastapi import APIRouter, Request
 from typing import List
-from ..models import Task, User
-from ..database import engine
+from ..models import Task
 
 router = APIRouter()
 
+
 @router.post("/add", response_model=Task)
-def add_task(task: Task):
-    with Session(engine) as session:
-        session.add(task)
-        session.commit()
-        session.refresh(task)
-        return task
+async def add_task(task: Task, request: Request):
+    db = request.app.state.db
+    task_doc = task.dict(exclude_unset=True)
+    # Remove id if present
+    task_doc.pop("id", None)
+    result = await db["tasks"].insert_one(task_doc)
+    task.id = str(result.inserted_id)
+    return task
+
 
 @router.get("/list", response_model=List[Task])
-def list_tasks(user_id: int):
-    with Session(engine) as session:
-        tasks = session.exec(select(Task).where(Task.user_id == user_id)).all()
-        return tasks
+async def list_tasks(user_id: str, request: Request):
+    db = request.app.state.db
+    cursor = db["tasks"].find({"user_id": user_id})
+    items = []
+    async for doc in cursor:
+        doc["id"] = str(doc.pop("_id"))
+        items.append(Task(**doc))
+    return items
