@@ -1,7 +1,7 @@
 # Simple habit -> focus correlation heuristic
 
 def habit_correlation(habit: dict) -> dict:
-    sleep = habit.get("sleep_hours") or 7
+    sleep = habit.get("sleep_hours") or 7 
     exercise = habit.get("exercise_minutes") or 0
     caffeine = habit.get("caffeine_mg") or 0
     mood = habit.get("mood") or 5
